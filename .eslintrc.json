@@ -1,3 +1,187 @@
 {
-  "extends": ["next/core-web-vitals"]
+  "extends": ["next/core-web-vitals", "airbnb", "prettier"],
+  "plugins": ["unused-imports", "@typescript-eslint/recommended"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/require-default-props": "off",
+    "operator-linebreak": "off",
+    "import/no-namespace": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "import/extensions": "off",
+    "react/prop-types": "off",
+    "react/button-has-type": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-extraneous-dependencies": 0,
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@dynamic/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "+(apps|libs|@dynamic-labs|@dynamic){/**/*,}",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "no-unused-vars": "off",
+    "consistent-return": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "eol-last": ["error", "always"],
+    "eqeqeq": ["error", "always"],
+    "indent": 0,
+    "@typescript-eslint/indent": 0,
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "comments": 120,
+        "ignorePattern": "^import\\s.+\\sfrom\\s.+$",
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "multiline-comment-style": ["error", "separate-lines"],
+    "no-console": 2,
+    "no-implicit-coercion": 2,
+    "no-trailing-spaces": 2,
+    "arrow-body-style": ["error", "as-needed"],
+    "import/first": 2,
+    "import/no-amd": 2,
+    "import/no-commonjs": 2,
+    "import/no-default-export": 0,
+    "import/no-nodejs-modules": 0,
+    "import/no-unresolved": 0,
+    "import/named": 0,
+    "no-multi-spaces": [
+      "error",
+      {
+        "exceptions": {
+          "Property": false
+        }
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0
+      }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectExpression": {
+          "consistent": true
+        },
+        "ObjectPattern": {
+          "consistent": true
+        },
+        "ImportDeclaration": {
+          "consistent": true
+        },
+        "ExportDeclaration": {
+          "consistent": true
+        }
+      }
+    ],
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": true
+      }
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "quote-props": ["error", "as-needed"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/prefer-stateless-function": 2,
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "declaration": "parens-new-line",
+        "assignment": "parens-new-line",
+        "return": "parens-new-line",
+        "arrow": "parens-new-line",
+        "condition": "parens-new-line",
+        "logical": "parens-new-line",
+        "prop": "parens-new-line"
+      }
+    ],
+    "class-methods-use-this": 0,
+    "react/react-in-jsx-scope": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.ts", "**/*.test.tsx"],
+        "optionalDependencies": false,
+        "peerDependencies": false,
+        "packageDir": "./"
+      }
+    ],
+    "@typescript-eslint/no-use-before-define": 0,
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "afterColon": true,
+        "mode": "strict"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.tsx"],
+      "rules": {
+        "sort-keys": 0,
+        "import/no-namespace": 0,
+        "react/require-default-props": "off",
+        "no-undef": "off",
+        "import/no-extraneous-dependencies": 0,
+        "react/function-component-definition": [
+          2,
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ]
+      }
+    }
+  ]
 }
