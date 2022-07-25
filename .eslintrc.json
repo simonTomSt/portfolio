@@ -1,11 +1,14 @@
 {
   "extends": ["next/core-web-vitals", "airbnb", "prettier"],
-  "plugins": ["unused-imports", "@typescript-eslint/recommended"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "globals": {
+    "JSX": true
+  },
   "rules": {
     "react/require-default-props": "off",
+    "no-shadow": "off",
     "operator-linebreak": "off",
     "import/no-namespace": "off",
     "react/jsx-props-no-spreading": "off",
@@ -181,6 +184,12 @@
             "unnamedComponents": "arrow-function"
           }
         ]
+      }
+    },
+    {
+      "files": ["*.js"],
+      "rules": {
+        "import/no-commonjs": "off"
       }
     }
   ]
