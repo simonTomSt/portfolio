@@ -1,0 +1,3 @@
+.paper {
+  @apply bg-dark-2 p-4 rounded-xl;
+}
