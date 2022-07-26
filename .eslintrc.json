@@ -189,7 +189,8 @@
     {
       "files": ["*.js"],
       "rules": {
-        "import/no-commonjs": "off"
+        "import/no-commonjs": "off",
+        "import/no-extraneous-dependencies": "off"
       }
     }
   ]

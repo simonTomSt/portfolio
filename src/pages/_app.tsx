@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment } from 'react';
 
 import type { AppProps } from 'next/app';
 import { withTRPC } from '@trpc/next';
