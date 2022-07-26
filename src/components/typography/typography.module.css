@@ -1,0 +1,57 @@
+.text {
+  @apply text-left;
+}
+
+.regular {
+  @apply font-normal;
+}
+
+.medium {
+  @apply font-medium;
+}
+
+.bold {
+  @apply font-bold;
+}
+
+.code-0 {
+  @apply font-medium text-xs tracking-tight leading-[18px];
+}
+
+.code-1 {
+  @apply font-medium text-sm tracking-tight leading-[18px];
+}
+
+.anchor {
+  @apply tracking-wide;
+}
+
+.paragraph-0 {
+  @apply text-[10px] leading-[13px];
+}
+
+.paragraph-1 {
+  @apply text-xs leading-4;
+}
+
+.paragraph-2 {
+  @apply text-sm;
+}
+
+.paragraph-3 {
+  @apply text-base leading-[21px];
+}
+
+.title {
+  @apply text-[22px] leading-[29px];
+}
+
+.subtitle {
+  @apply text-[17px] leading-[22px];
+}
+
+.super-title {
+  @apply text-9xl;
+
+  font-weight: 800;
+}
