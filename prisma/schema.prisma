@@ -57,11 +57,26 @@ model VerificationToken {
 }
 
 model Project {
-    id            String    @id @default(cuid())
-    description   String
+    id                 String    @id @default(cuid())
+    description        String
     shortDescription   String?
-    title         String
-    githubUrl     String
-    url           String?
-    image         String?
+    title              String
+    githubUrl          String
+    url                String?
+    image              String?
+}
+
+model Content {
+    id      String    @id @default(cuid())
+    welcome String
+    aboutMe String
+    contact String
+}
+
+
+model ContactInfo {
+    id      String    @id @default(cuid())
+    githubLogin String
+    linkedinUrl String
+    email String
 }
