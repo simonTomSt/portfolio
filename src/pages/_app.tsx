@@ -1,22 +1,34 @@
+import { Fragment, type ReactNode } from 'react';
+
+import type { AppProps } from 'next/app';
 import { withTRPC } from '@trpc/next';
 import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
-import type { AppType } from 'next/dist/shared/lib/utils';
 
+import { AuthGuard } from 'containers';
 import { isWindow } from 'utils/isWindow';
 
 import type { AppRouter } from '../server/router';
 
 import '../styles/globals.css';
 
-const MyApp: AppType = ({
+const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
-}) => (
-  <SessionProvider session={session}>
-    <Component {...pageProps} />
-  </SessionProvider>
-);
+}: AppProps) => {
+  const AuthWrapper = Component.auth ? AuthGuard : Fragment;
+  const Layout = Component.layout || Fragment;
+
+  return (
+    <SessionProvider session={session}>
+      <AuthWrapper>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthWrapper>
+    </SessionProvider>
+  );
+};
 
 const getBaseUrl = () => {
   if (isWindow) {
