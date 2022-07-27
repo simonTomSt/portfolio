@@ -5,5 +5,4 @@ export const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   GITHUB_ID: z.string(),
   GITHUB_SECRET: z.string(),
-  MY_EMAIL: z.string(),
 });
