@@ -11,10 +11,23 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   pages: { signIn: Routes.admin.login, signOut: Routes.admin.login },
   callbacks: {
+    async signIn({ user, profile }) {
+      try {
+        await prisma.user.updateMany({
+          where: { id: user.id, githubLogin: null },
+          data: { ...user, githubLogin: profile.login as string },
+        });
+
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
       }
+
       return session;
     },
   },

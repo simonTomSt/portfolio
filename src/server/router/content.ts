@@ -11,13 +11,10 @@ export const contentRouter = createRouter()
       contact: z.string(),
     }),
     async resolve({ ctx, input }) {
-      const content = await ctx.prisma.content.findFirst();
-
-      if (!content) return ctx.prisma.content.create({ data: input });
-
-      return ctx.prisma.content.update({
-        where: { id: content.id },
-        data: input,
+      return ctx.prisma.content.upsert({
+        where: {},
+        update: input,
+        create: input,
       });
     },
   })
