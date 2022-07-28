@@ -55,3 +55,11 @@
 
   font-weight: 800;
 }
+
+.gradient-pink-to-blue {
+  @apply text-gradient-pink-to-blue;
+}
+
+.gradient-blue-to-green {
+  @apply text-gradient-blue-to-green;
+}

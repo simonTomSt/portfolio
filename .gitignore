@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+
+# tmp
+tmp
+
 # database
 /prisma/db.sqlite
 /prisma/db.sqlite-journal
@@ -38,3 +42,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Sentry
+.sentryclirc
+
+
+# vscode
+.vscode

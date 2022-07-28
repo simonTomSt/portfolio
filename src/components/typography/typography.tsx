@@ -27,11 +27,14 @@ export type TypographyVariant =
   | 'code-1'
   | 'anchor';
 
+export type TypographyGradient = 'pink-to-blue' | 'blue-to-green' | 'none';
+
 type TypographyProps = {
   as?: TypographyTag;
   children: ReactNode;
   className?: string;
   variant?: TypographyVariant;
+  gradient?: TypographyGradient;
 } & HTMLAttributes<HTMLElement>;
 
 export const Typography = ({
@@ -39,9 +42,18 @@ export const Typography = ({
   children,
   className = '',
   variant = 'paragraph-0',
+  gradient = 'none',
   ...props
 }: TypographyProps) => (
-  <Tag className={clsx(styles.text, styles[variant], className)} {...props}>
+  <Tag
+    className={clsx(
+      styles.text,
+      styles[variant],
+      styles[`gradient-${gradient}`],
+      className,
+    )}
+    {...props}
+  >
     {children}
   </Tag>
 );

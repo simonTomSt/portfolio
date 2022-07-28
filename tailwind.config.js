@@ -34,6 +34,18 @@ module.exports = {
           background:
             'linear-gradient(90deg, rgba(80, 68, 251, 1) 13%,rgba(116, 156, 230, 1) 62%,rgba(155, 250, 208, 1) 100%)',
         },
+        '.text-gradient-pink-to-blue': {
+          background:
+            'linear-gradient(270deg,rgba(63, 94, 251, 1) 13%, rgba(135, 85, 196, 1) 61%,rgba(252, 70, 107, 1) 100%)',
+          color: 'transparent',
+          backgroundClip: 'text',
+        },
+        '.text-gradient-blue-to-green': {
+          background:
+            'linear-gradient(90deg, rgba(80, 68, 251, 1) 13%,rgba(116, 156, 230, 1) 62%,rgba(155, 250, 208, 1) 100%)',
+          color: 'transparent',
+          backgroundClip: 'text',
+        },
       };
       addUtilities(customUtilities, ['responsive', 'hover']);
     }),

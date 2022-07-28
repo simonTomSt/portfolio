@@ -18,6 +18,10 @@ export const projectRouter = createRouter()
   })
   .query('getAll', {
     resolve({ ctx }) {
-      return ctx.prisma.project.findMany();
+      return ctx.prisma.project.findMany({
+        include: {
+          skills: true,
+        },
+      });
     },
   });

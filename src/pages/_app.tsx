@@ -6,7 +6,7 @@ import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
 
 import { AuthGuard } from 'containers';
-import { isWindow } from 'utils/isWindow';
+import { getBaseUrl } from 'utils/functions/getBaseUrl';
 
 import type { AppRouter } from '../server/router';
 
@@ -28,12 +28,6 @@ const MyApp = ({
       </AuthWrapper>
     </SessionProvider>
   );
-};
-
-const getBaseUrl = () => {
-  if (isWindow) return '';
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
-  return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };
 
 export default withTRPC<AppRouter>({

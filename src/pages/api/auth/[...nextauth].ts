@@ -3,6 +3,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GitHubProvider from 'next-auth/providers/github';
 
 import { Routes } from 'constants/routes';
+import { logger } from 'utils/logger';
 
 import { prisma } from '../../../server/db/client';
 import { env } from '../../../server/env.mjs';
@@ -20,6 +21,8 @@ export const authOptions: NextAuthOptions = {
 
         return true;
       } catch (error) {
+        logger.log(error);
+
         return false;
       }
     },

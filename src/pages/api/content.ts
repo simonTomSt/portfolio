@@ -1,8 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { withSentry } from '@sentry/nextjs';
 
 import { prisma } from '../../server/db/client';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const content = async (req: NextApiRequest, res: NextApiResponse) => {
   const content = await prisma.content.findFirst();
-  res.status(200).json(content);
+  return res.status(200).json(content);
 };
+
+export default withSentry(content);

@@ -1,25 +1,28 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import { Content, Project } from '@prisma/client';
+import * as Sentry from '@sentry/nextjs';
 
 import { HomeComposition } from 'compositions/home';
 import { trpc } from 'utils/trpc';
 import { Loader } from 'components';
+import { getBaseUrl } from 'utils/functions/getBaseUrl';
+import { ErrorComposition } from 'compositions/error';
 
 export const getStaticProps = async () => {
   let content: Content | null = null;
   let projects: Project[] | null = null;
+  const baseUrl = getBaseUrl();
 
   try {
     const [contentRes, projectsRes] = await Promise.all([
-      await fetch('http://localhost:3000/api/content'),
-      fetch('http://localhost:3000/api/project'),
+      await fetch(`${baseUrl}/api/content`),
+      fetch(`${baseUrl}/api/project`),
     ]);
     content = await contentRes.json();
     projects = await projectsRes.json();
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
+    Sentry.captureException(e);
   }
 
   return {
@@ -34,7 +37,6 @@ export const getStaticProps = async () => {
 type HomeProps = {
   prefetchedContent: Content | null;
   prefetchedProjects: Project[] | null;
-  context: any;
 };
 
 const Home: NextPage<HomeProps> = ({
@@ -50,7 +52,13 @@ const Home: NextPage<HomeProps> = ({
   );
 
   if (!content && contentStatus === 'loading') return <Loader />;
-  if (!content || contentStatus === 'error') return <Loader />;
+  if (!content || contentStatus === 'error')
+    return (
+      <ErrorComposition
+        statusCode={500}
+        message='Sorry could not load the page :('
+      />
+    );
 
   return (
     <>

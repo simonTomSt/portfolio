@@ -18,6 +18,13 @@ export const HomeComposition = ({
     <main>
       <WelcomeSection subtitle={welcomeSubtitle} />
       <ProjectsSection prefetchedProjects={prefetchedProjects} />
+      <button
+        onClick={() => {
+          throw new Error('Oppsie');
+        }}
+      >
+        error
+      </button>
     </main>
   );
 };

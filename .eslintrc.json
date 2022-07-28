@@ -7,6 +7,7 @@
     "JSX": true
   },
   "rules": {
+    "jsx-a11y/anchor-is-valid": "off",
     "react/require-default-props": "off",
     "no-shadow": "off",
     "operator-linebreak": "off",

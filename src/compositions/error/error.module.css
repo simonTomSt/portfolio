@@ -1,0 +1,11 @@
+.main {
+  @apply flex h-screen w-screen flex-col items-center justify-center text-center;
+}
+
+.subtitle {
+  @apply mb-10 mt-5;
+}
+
+.subtitle span {
+  @apply text-transparent bg-clip-text;
+}
