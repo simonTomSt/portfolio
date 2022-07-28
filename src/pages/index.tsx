@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import type { NextPage } from 'next';
+import type { Page } from 'next';
 import { Content, Project } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
 
@@ -39,10 +39,7 @@ type HomeProps = {
   prefetchedProjects: Project[] | null;
 };
 
-const Home: NextPage<HomeProps> = ({
-  prefetchedContent,
-  prefetchedProjects,
-}) => {
+const Home: Page<HomeProps> = ({ prefetchedContent, prefetchedProjects }) => {
   const { data: content, status: contentStatus } = trpc.useQuery(
     ['content.getContent'],
     {

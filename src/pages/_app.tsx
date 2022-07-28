@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import type { AppProps } from 'next/app';
+import type { ExtendedAppProps } from 'next/app';
 import { withTRPC } from '@trpc/next';
 import superjson from 'superjson';
 import { SessionProvider } from 'next-auth/react';
@@ -15,7 +15,7 @@ import '../styles/globals.css';
 const MyApp = ({
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps) => {
+}: ExtendedAppProps) => {
   const AuthWrapper = Component.auth ? AuthGuard : Fragment;
   const Layout = Component.layout || Fragment;
 
