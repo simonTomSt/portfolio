@@ -1,0 +1,25 @@
+.container {
+  @apply flex;
+}
+
+.aside {
+  @apply w-36 h-screen flex flex-col left-0 top-0 bg-dark-2 p-4;
+}
+
+.nav {
+  @apply flex flex-col;
+}
+
+.nav a {
+  @apply mt-4 text-gray-400 hover:text-white transition-colors duration-300;
+}
+
+.logout {
+  @apply mt-auto mx-auto w-full text-center;
+}
+
+.main {
+  @apply mt-8 px-6 max-w-5xl;
+
+  width: calc(100% - 144px);
+}

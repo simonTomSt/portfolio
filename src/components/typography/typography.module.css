@@ -42,20 +42,21 @@
   @apply text-base leading-[21px];
 }
 
+.subtitle {
+  @apply text-xl leading-[22px];
+}
+
 .title {
   @apply text-[22px] leading-[29px];
 }
 
-.subtitle {
-  @apply text-[17px] leading-[22px];
-}
-
 .super-title {
-  @apply text-9xl;
+  @apply text-9xl font-manrope;
 
   font-weight: 800;
 }
 
+/* Text with gradient */
 .gradient-pink-to-blue {
   @apply text-gradient-pink-to-blue;
 }

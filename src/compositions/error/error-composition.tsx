@@ -22,7 +22,12 @@ export const ErrorComposition = ({ statusCode, message }: ErrorProps) => (
       )}
     </Typography>
 
-    <Typography as='h2' className={styles.subtitle} gradient='pink-to-blue'>
+    <Typography
+      as='h2'
+      className={styles.subtitle}
+      variant='super-title'
+      gradient='pink-to-blue'
+    >
       {statusCode}
     </Typography>
 

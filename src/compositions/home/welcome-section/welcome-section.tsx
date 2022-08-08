@@ -5,13 +5,15 @@ import styles from './welcome-section.module.css';
 type WelcomeSectionProps = { subtitle: string };
 
 export const WelcomeSection = ({ subtitle }: WelcomeSectionProps) => (
-  <section>
+  <section className={styles.welcome}>
     <Typography as='h1' variant='super-title' className={styles.title}>
-      <span className='bg-gradient-pink-to-blue'>Full Stack</span>
+      <span className='text-gradient-pink-to-blue'>Full Stack</span>
       <br />
-      <span className='bg-gradient-blue-to-green'>Developer</span>
+      <span className='text-gradient-blue-to-green'>Developer</span>
     </Typography>
 
-    <p>{subtitle}</p>
+    <Typography as='h2' variant='subtitle' className={styles.subtitle}>
+      {subtitle}
+    </Typography>
   </section>
 );

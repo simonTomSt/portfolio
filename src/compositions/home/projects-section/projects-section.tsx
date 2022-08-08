@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Project } from '@prisma/client';
+import Image from 'next/image';
 
 import { trpc } from 'utils/trpc';
 
@@ -19,5 +20,14 @@ export const ProjectsSection = ({
     },
   );
 
-  return <div>ProjectsSection</div>;
+  if (!projects) return <div />;
+
+  return (
+    <div>
+      {projects.map(
+        ({ id, image }) =>
+          image && <Image key={id} src={image} height={200} width={300} />,
+      )}
+    </div>
+  );
 };

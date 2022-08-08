@@ -1,4 +1,11 @@
-.title span {
-  background-clip: text;
-  color: transparent;
+.welcome {
+  @apply w-full;
+}
+
+.title {
+  @apply text-center w-full;
+}
+
+.subtitle {
+  @apply mt-8 text-center;
 }

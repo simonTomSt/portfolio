@@ -6,7 +6,9 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const moduleExports = {
-  // Your existing module.exports
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 };
 
 const sentryWebpackPluginOptions = {

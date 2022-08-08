@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
 
   try {
     const [contentRes, projectsRes] = await Promise.all([
-      await fetch(`${baseUrl}/api/content`),
+      fetch(`${baseUrl}/api/content`),
       fetch(`${baseUrl}/api/project`),
     ]);
     content = await contentRes.json();
@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       prefetchedContent: content,
-      prefetchedProjects: content,
+      prefetchedProjects: projects,
     },
     revalidate: 10,
   };

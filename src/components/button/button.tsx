@@ -1,6 +1,6 @@
 import React, { type ButtonHTMLAttributes } from 'react';
 
-import { Loader } from 'components';
+import { Loader } from 'components/loader';
 
 import styles from './button.module.css';
 

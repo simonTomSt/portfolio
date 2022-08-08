@@ -1,14 +1,13 @@
 import { type ReactNode } from 'react';
 
-import { signOut } from 'next-auth/react';
-
-import { Button } from 'components/button';
+import styles from './admin-layout.module.css';
+import { AdminNavigation } from './admin-navigation';
 
 type AdminLayoutProps = { children: ReactNode };
 
 export const AdminLayout = ({ children }: AdminLayoutProps) => (
-  <div>
-    <Button onClick={() => signOut()}>Sign out</Button>
-    {children}
+  <div className={styles.container}>
+    <AdminNavigation />
+    <main className={styles.main}>{children}</main>
   </div>
 );
