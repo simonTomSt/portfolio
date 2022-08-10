@@ -79,14 +79,15 @@ model Content {
 
 
 model ContactInfo {
-    id      String    @id @default(cuid())
+    id          String    @id @default(cuid())
     githubLogin String
     linkedinUrl String
-    email String
+    email       String
 }
 
 model Skill {
     id          String    @id @default(cuid())
+    primary     Boolean?
     name        String
     projects    Project[]
 }

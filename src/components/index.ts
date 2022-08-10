@@ -7,3 +7,4 @@ export * from './modal';
 export * from './input';
 export * from './textarea';
 export * from './toast';
+export * from './checkbox';

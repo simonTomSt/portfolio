@@ -12,6 +12,11 @@ declare global {
   }
 }
 
+type Result = {
+  event: string;
+  info: { url: string };
+};
+
 type ImageUploadProps = {
   onSuccessfulUpload: (imageUrl: string) => void;
   initialImage: string | null | undefined;
@@ -38,7 +43,7 @@ export const ImageUpload = ({
                 cloudName: 'szymon-st-pie',
                 uploadPreset: 'portfolio',
               },
-              (error: any, result: any) => {
+              (error: Error, result: Result) => {
                 if (error) logger.log(error);
 
                 if (!error && result && result.event === 'success') {

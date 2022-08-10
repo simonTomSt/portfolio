@@ -3,7 +3,7 @@
 }
 
 .panel {
-  @apply w-full shadow-xl transition-all;
+  @apply w-full shadow-xl transition-all  max-w-screen-md;
 }
 
 .overlay {

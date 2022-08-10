@@ -1,4 +1,4 @@
-import { NextPage, Page } from 'next';
+import { Page } from 'next';
 
 import { AdminLayout } from 'containers/admin-layout';
 import { ProjectsComposition } from 'compositions/admin/projects';

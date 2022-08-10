@@ -1,3 +1,7 @@
 .row {
-  @apply my-4 border border-gray-400 flex p-4 rounded-xl w-full text-gray-400 hover:text-white;
+  @apply my-4 border border-gray-400 flex items-center p-4 rounded-xl w-full text-gray-400;
+}
+
+.item {
+  @apply mx-3 hover:text-white;
 }

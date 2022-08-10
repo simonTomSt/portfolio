@@ -13,6 +13,7 @@ export const projectRouter = createRouter()
       url: z.string().url().optional().nullable(),
       image: z.string().url().optional().nullable(),
       githubUrl: z.string().url(),
+      skills: z.string().array(),
     }),
     async resolve({ ctx, input }) {
       if (!ctx?.session?.user?.id) {
@@ -21,12 +22,27 @@ export const projectRouter = createRouter()
 
       if (!input.id)
         return ctx.prisma.project.create({
-          data: input,
+          data: {
+            ...input,
+            skills: {
+              connect: input.skills.map((skillId) => ({ id: skillId })),
+            },
+          },
         });
+
+      const skills = await ctx.prisma.skill.findMany();
 
       return ctx.prisma.project.update({
         where: { id: input.id },
-        data: input,
+        data: {
+          ...input,
+          skills: {
+            connect: input.skills.map((skillId) => ({ id: skillId })),
+            disconnect: skills
+              .filter(({ id }) => !input.skills.includes(id))
+              .map(({ id }) => ({ id })),
+          },
+        },
       });
     },
   })

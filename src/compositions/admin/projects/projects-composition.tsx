@@ -26,7 +26,7 @@ export const ProjectsComposition = () => {
     );
 
   return (
-    <main>
+    <>
       {projects?.map((project) => (
         <RowInfo key={project.id} onClick={() => setActiveProject(project)}>
           <RowInfoItem>{project.title}</RowInfoItem>
@@ -42,6 +42,6 @@ export const ProjectsComposition = () => {
       <Button onClick={() => setActiveProject({} as Project)}>
         Add new project
       </Button>
-    </main>
+    </>
   );
 };
