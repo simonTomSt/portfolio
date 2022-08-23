@@ -15,7 +15,12 @@ export type TypographyTag =
   | 'a'
   | 'span';
 
-export type TypographyVariant = 'super-title' | 'title' | 'subtitle' | 'base';
+export type TypographyVariant =
+  | 'super-title'
+  | 'large-title'
+  | 'title'
+  | 'subtitle'
+  | 'base';
 
 export type TypographyGradient = 'pink-to-blue' | 'blue-to-green' | 'none';
 

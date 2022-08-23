@@ -45,6 +45,8 @@ model User {
     email         String?   @unique
     emailVerified String?   @unique
     githubLogin   String?   @unique
+    cvUrl         String?
+    linkedinUrl   String?
     image         String?
     accounts      Account[]
     sessions      Session[]
@@ -66,7 +68,7 @@ model Project {
     githubUrl          String
     url                String?
     image              String?
-    skills             Skill[]  
+    skills             Skill[]
 
 }
 

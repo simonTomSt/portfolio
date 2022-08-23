@@ -5,6 +5,7 @@
 @layer base {
   body,
   html {
-    @apply bg-dark-1 font-sarabun text-gray-2;
+    @apply bg-dark-1 font-sarabun text-gray-2 relative;
+    z-index: -2;
   }
 }

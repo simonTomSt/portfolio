@@ -26,7 +26,7 @@ export const WelcomeSection = ({ subtitle }: WelcomeSectionProps) => (
         className={styles['view-cv']}
       >
         <Button size='large'>
-          <Typography>View my CV</Typography>
+          <Typography>View my resume</Typography>
         </Button>
       </a>
     </Container>

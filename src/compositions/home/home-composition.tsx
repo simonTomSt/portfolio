@@ -28,7 +28,7 @@ export const HomeComposition = ({
       <Container>
         <SkillsSection skills={prefetchedSkills} />
         <ProjectsSection prefetchedProjects={prefetchedProjects} />
-        <ContactSection contactText={contactText} />
+        {/* <ContactSection contactText={contactText} /> */}
       </Container>
     </main>
   );

@@ -29,7 +29,7 @@ module.exports = {
         },
         '.bg-gradient-pink-to-blue': {
           background:
-            'linear-gradient(270deg,rgba(63, 94, 251, 1) 13%, rgba(135, 85, 196, 1) 61%,rgba(252, 70, 107, 1) 100%)',
+            'linear-gradient(270deg,rgba(63, 94, 251, 1) 13%, rgba(135, 85, 196, 1) 61%,rgba(icons8-javascript (1).svg, 1) 100%)',
         },
         '.bg-gradient-blue-to-green': {
           background:

@@ -1,0 +1,6 @@
+.projects {
+  @apply mt-28 break-all;
+}
+.projects__title {
+  @apply w-max mx-auto break-words;
+}

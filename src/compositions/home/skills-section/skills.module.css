@@ -1,11 +1,45 @@
 .skills {
-  @apply mt-10;
+  @apply mt-[200px];
+}
+
+.skills__title-container {
+  @apply relative mx-auto block w-max;
+  @apply md:w-full;
+}
+
+.skills__title-image {
+  @apply absolute left-0 top-0 w-[150px] h-[150px];
+  @apply md:w-[250px] md:h-[250px];
+  transform: translate(-70px, -35%);
+  z-index: -1;
+}
+
+@screen md {
+  .skills__title-image {
+    transform: translate(-15px, -30%);
+  }
 }
 
 .skills__title {
-  @apply mx-auto block w-max;
+  @apply mb-[70px] mx-auto block w-max text-white;
+  @apply md:pl-[100px] md:w-full;
+}
+
+.skills__title--highlight {
+  @apply text-dark-1 mr-5 font-extrabold;
+  @apply sm:mr-10;
 }
 
 .content {
   @apply h-10;
+}
+
+.skills__list {
+  @apply flex w-full justify-center flex-wrap;
+  @apply md:justify-between;
+}
+
+.skills__skill {
+  @apply text-gray-700 font-bold px-2 py-3  italic text-base;
+  @apply md:text-4xl md:px-4 md:py-6;
 }

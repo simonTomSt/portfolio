@@ -1,4 +1,7 @@
 import type { Skill } from '@prisma/client';
+import Image from 'next/image';
+
+import skillsTitleIconPath from '@static/assets/skills-title.svg';
 
 import { Typography } from '../../../components';
 import { trpc } from '../../../utils/trpc';
@@ -9,12 +12,14 @@ type SkillsSectionProps = {
   skills: Skill[] | null;
 };
 
-export const SkillsSection = ({ skills: ss }: SkillsSectionProps) => {
-  const { data: skills, status: projectsStatus } = trpc.useQuery(
+export const SkillsSection = ({
+  skills: prefetchedSkills,
+}: SkillsSectionProps) => {
+  const { data: skills, status: skillsStatus } = trpc.useQuery(
     ['skill.getAll'],
     {
-      enabled: !ss,
-      initialData: ss,
+      enabled: !prefetchedSkills,
+      initialData: prefetchedSkills,
     },
   );
 
@@ -22,12 +27,28 @@ export const SkillsSection = ({ skills: ss }: SkillsSectionProps) => {
 
   return (
     <section className={styles.skills}>
-      <Typography as='h2' variant='title' className={styles.skills__title}>
-        My tech stack
-      </Typography>
+      <div className={styles['skills__title-container']}>
+        <Typography
+          as='h2'
+          variant='large-title'
+          className={styles.skills__title}
+        >
+          <span className={styles['skills__title--highlight']}>My</span>
+          stack
+        </Typography>
+        <div className={styles['skills__title-image']}>
+          <Image src={skillsTitleIconPath} layout='fill' />
+        </div>
+      </div>
 
       <div className={styles.skills__content}>
-        {skills?.map((skill) => skill.name)}
+        <ul className={styles.skills__list}>
+          {skills?.map(({ id, name }) => (
+            <li key={id}>
+              <Typography className={styles.skills__skill}>{name}</Typography>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
