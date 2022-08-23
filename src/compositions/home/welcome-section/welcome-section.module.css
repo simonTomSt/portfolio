@@ -1,11 +1,23 @@
 .welcome {
-  @apply w-full;
+  @apply w-full text-center h-screen flex flex-col items-center justify-center;
 }
 
 .title {
-  @apply text-center w-full;
+  @apply text-center w-full mt-20;
+}
+
+.subtitle-container {
+  @apply mx-auto max-w-md;
 }
 
 .subtitle {
   @apply mt-8 text-center;
+}
+
+.view-cv {
+  @apply mx-auto mt-10 font-medium w-max block;
+}
+
+.me {
+  @apply block mx-auto;
 }

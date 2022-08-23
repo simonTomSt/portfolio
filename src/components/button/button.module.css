@@ -1,0 +1,68 @@
+button.button {
+  @apply rounded-3xl bg-red-200 transition-colors;
+}
+
+button.text {
+  @apply bg-transparent;
+}
+
+button.large {
+  @apply px-12 py-4;
+}
+
+button.medium {
+  @apply px-3 py-2;
+}
+
+/*PColors*/
+button.primary {
+  @apply bg-gradient-pink-to-blue text-white transition-all duration-500 block text-center relative;
+  background-size: 200% auto;
+}
+
+button.primary:before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translate3d(0px, 5px, 0) scale(0.92);
+  filter: blur(20px);
+  opacity: 0.4;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+  @apply bg-gradient-pink-to-blue;
+}
+
+/*
+* Prevents issues when the parent creates a
+* stacking context. (For example, using the transform
+* property )
+*/
+button.primary::after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
+}
+
+button.secondary {
+  @apply bg-gradient-blue-to-green text-white transition-all duration-500 block text-center;
+  background-size: 200% auto;
+}
+
+button.secondary:hover,
+button.primary:hover {
+  background-position: right center;
+}
+
+button.text:hover {
+  @apply text-white;
+}

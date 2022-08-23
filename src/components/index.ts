@@ -8,3 +8,5 @@ export * from './input';
 export * from './textarea';
 export * from './toast';
 export * from './checkbox';
+export * from './container';
+export * from './logo';

@@ -3,7 +3,7 @@
 }
 
 .aside {
-  @apply w-36 h-screen flex flex-col left-0 top-0 bg-dark-2 p-4;
+  @apply w-36  flex flex-col left-0 top-0 bg-dark-2 p-4 h-auto min-h-screen;
 }
 
 .nav {

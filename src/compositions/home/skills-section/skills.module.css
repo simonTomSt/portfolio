@@ -1,0 +1,11 @@
+.skills {
+  @apply mt-10;
+}
+
+.skills__title {
+  @apply mx-auto block w-max;
+}
+
+.content {
+  @apply h-10;
+}

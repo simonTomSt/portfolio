@@ -85,15 +85,13 @@ export const ProjectModal = ({ open, onClose, project }: ProjectModalProps) => {
 
         <Label.Root className={styles.label}>
           Project skills
-          {receivedProj?.skills && skills && (
-            <ProjectSkillSelect
-              onChange={(pressedSkillsIds) =>
-                setValue('skills', pressedSkillsIds)
-              }
-              projectSkills={receivedProj.skills}
-              skills={skills}
-            />
-          )}
+          <ProjectSkillSelect
+            onChange={(pressedSkillsIds) =>
+              setValue('skills', pressedSkillsIds)
+            }
+            projectSkills={receivedProj?.skills || []}
+            skills={skills || []}
+          />
         </Label.Root>
 
         <Button type='submit'>Save</Button>

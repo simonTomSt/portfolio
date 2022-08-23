@@ -1,0 +1,11 @@
+.logo {
+  @apply flex;
+}
+
+.text {
+  @apply ml-2 font-bold;
+}
+
+.icon {
+  @apply font-bold;
+}

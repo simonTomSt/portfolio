@@ -1,0 +1,29 @@
+.container {
+  @apply bg-dark-2 shadow-2xl pt-6 relative;
+  @apply md:px-6 md:pb-2 md:rounded-3xl;
+}
+
+.about-me__body {
+  @apply pb-4;
+  @apply md:w-1/2;
+}
+
+.about-me__body p {
+  @apply my-4;
+}
+
+.about-me__text {
+  @apply mb-6;
+  @apply md:mb-0;
+}
+
+.title {
+  @apply text-white mb-4;
+}
+
+.image {
+  @apply flex mx-auto max-w-[550px] justify-center;
+  @apply sm:w-1/2;
+  @apply md:absolute md:bottom-0 md:right-0 md:rounded-br-3xl md:overflow-hidden;
+  @apply lg:w-full;
+}

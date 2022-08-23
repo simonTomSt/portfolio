@@ -1,11 +1,14 @@
+import { type ReactNode } from 'react';
+
+import clsx from 'clsx';
+
 import styles from './container.module.css';
 
 export type ContainerProps = {
-  children: JSX.Element;
+  children: ReactNode;
+  className?: string;
 };
 
-const Container = ({ children }: ContainerProps) => (
-  <div className={styles.container}>{children}</div>
+export const Container = ({ children, className = '' }: ContainerProps) => (
+  <div className={clsx(styles.container, className)}>{children}</div>
 );
-
-export default Container;

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Head from 'next/head';
 import Link from 'next/link';
+import { ArrowLeft } from 'react-bootstrap-icons';
 
 import { Button } from 'components/button';
 import { Typography } from 'components';
@@ -33,7 +33,11 @@ export const ErrorComposition = ({ statusCode, message }: ErrorProps) => (
 
     <Link href='/'>
       <a>
-        <Button>Go back to the home page</Button>
+        <Button color='text'>
+          <div className='flex items-center'>
+            <ArrowLeft className='mr-2' /> Go back to the home page
+          </div>
+        </Button>
       </a>
     </Link>
   </section>

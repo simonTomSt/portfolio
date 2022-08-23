@@ -10,6 +10,7 @@ module.exports = {
         'dark-1': '#0c1014',
         'dark-2': '#18191C',
         'gray-1': '#F5F5F5',
+        'gray-2': '#858789',
       },
       fontFamily: {
         manrope: ['Manrope', 'sans-serif'],
@@ -42,7 +43,7 @@ module.exports = {
         },
         '.text-gradient-blue-to-green': {
           background:
-            'linear-gradient(90deg, rgba(80, 68, 251, 1) 13%,rgba(116, 156, 230, 1) 62%,rgba(155, 250, 208, 1) 100%)',
+            'linear-gradient(90deg, rgb(68, 135, 251) 13%, rgb(68, 224, 251) 62%,rgba(155, 250, 208, 1) 100%)',
           color: 'transparent',
           backgroundClip: 'text',
         },

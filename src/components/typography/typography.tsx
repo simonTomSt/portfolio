@@ -15,17 +15,7 @@ export type TypographyTag =
   | 'a'
   | 'span';
 
-export type TypographyVariant =
-  | 'super-title'
-  | 'title'
-  | 'subtitle'
-  | 'paragraph-0'
-  | 'paragraph-1'
-  | 'paragraph-2'
-  | 'paragraph-3'
-  | 'code-0'
-  | 'code-1'
-  | 'anchor';
+export type TypographyVariant = 'super-title' | 'title' | 'subtitle' | 'base';
 
 export type TypographyGradient = 'pink-to-blue' | 'blue-to-green' | 'none';
 
@@ -41,7 +31,7 @@ export const Typography = ({
   as: Tag = 'p',
   children,
   className = '',
-  variant = 'paragraph-0',
+  variant = 'base',
   gradient = 'none',
   ...props
 }: TypographyProps) => (

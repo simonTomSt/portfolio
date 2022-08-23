@@ -5,7 +5,6 @@
 @layer base {
   body,
   html {
-    font-family: Sarabun, sans-serif;
-    @apply bg-dark-1 font-manrope text-gray-1;
+    @apply bg-dark-1 font-sarabun text-gray-2;
   }
 }

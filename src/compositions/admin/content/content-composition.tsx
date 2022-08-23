@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import { useForm } from 'react-hook-form';
+import dynamic from 'next/dynamic';
+import { useForm, Controller } from 'react-hook-form';
 import { Content } from '@prisma/client';
 import * as Label from '@radix-ui/react-label';
 
@@ -10,7 +11,15 @@ import { ErrorComposition } from 'compositions/error';
 
 import styles from './content.module.css';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import '@uiw/react-md-editor/markdown-editor.css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import '@uiw/react-markdown-preview/markdown.css';
+
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false });
+
 export const ContentComposition = () => {
+  const [aboutMe, setAboutMe] = useState('');
   const {
     data: content,
     status: contentGetStatus,
@@ -22,7 +31,7 @@ export const ContentComposition = () => {
     error: updatedContentError,
   } = trpc.useMutation(['content.createOrUpdate']);
   const defaultValues = useMemo(() => content, [content]);
-  const { handleSubmit, register, reset } = useForm<Content>();
+  const { handleSubmit, register, reset, control } = useForm<Content>();
 
   useEffect(() => {
     if (defaultValues) {
@@ -54,7 +63,15 @@ export const ContentComposition = () => {
           <Label.Root htmlFor='aboutMe' className={styles.form__label}>
             About me text
           </Label.Root>
-          <Textarea id='aboutMe' {...register('aboutMe')} rows={8} />
+          {/* <Textarea id='aboutMe' {...register('aboutMe')} rows={8} /> */}
+
+          <Controller
+            render={({ field }) => (
+              <MDEditor value={field.value} onChange={field.onChange} />
+            )}
+            control={control}
+            name='aboutMe'
+          />
         </div>
         <div className={styles.form__field}>
           <Label.Root htmlFor='contact' className={styles.form__label}>

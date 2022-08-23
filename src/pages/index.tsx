@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import type { Page } from 'next';
-import { Content, Project } from '@prisma/client';
+import { Content, Project, Skill } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
 
 import { HomeComposition } from 'compositions/home';
@@ -12,15 +12,19 @@ import { ErrorComposition } from 'compositions/error';
 export const getStaticProps = async () => {
   let content: Content | null = null;
   let projects: Project[] | null = null;
+  let skills: Skill[] | null = null;
   const baseUrl = getBaseUrl();
 
   try {
-    const [contentRes, projectsRes] = await Promise.all([
+    const [contentRes, projectsRes, skillsRes] = await Promise.all([
       fetch(`${baseUrl}/api/content`),
       fetch(`${baseUrl}/api/project`),
+      fetch(`${baseUrl}/api/skills`),
     ]);
+
     content = await contentRes.json();
     projects = await projectsRes.json();
+    skills = await skillsRes.json();
   } catch (e) {
     Sentry.captureException(e);
   }
@@ -29,6 +33,7 @@ export const getStaticProps = async () => {
     props: {
       prefetchedContent: content,
       prefetchedProjects: projects,
+      prefetchedSkills: skills,
     },
     revalidate: 10,
   };
@@ -37,9 +42,14 @@ export const getStaticProps = async () => {
 type HomeProps = {
   prefetchedContent: Content | null;
   prefetchedProjects: Project[] | null;
+  prefetchedSkills: Skill[] | null;
 };
 
-const Home: Page<HomeProps> = ({ prefetchedContent, prefetchedProjects }) => {
+const Home: Page<HomeProps> = ({
+  prefetchedContent,
+  prefetchedProjects,
+  prefetchedSkills,
+}) => {
   const { data: content, status: contentStatus } = trpc.useQuery(
     ['content.getContent'],
     {
@@ -68,6 +78,7 @@ const Home: Page<HomeProps> = ({ prefetchedContent, prefetchedProjects }) => {
       <HomeComposition
         content={content}
         prefetchedProjects={prefetchedProjects}
+        prefetchedSkills={prefetchedSkills}
       />
     </>
   );
