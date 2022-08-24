@@ -1,3 +1,7 @@
+.body-small {
+  @apply text-xs;
+}
+
 .base {
   @apply text-sm;
   @apply md:text-base;

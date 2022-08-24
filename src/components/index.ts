@@ -10,3 +10,4 @@ export * from './toast';
 export * from './checkbox';
 export * from './container';
 export * from './logo';
+export * from './footer';

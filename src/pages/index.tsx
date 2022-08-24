@@ -2,6 +2,7 @@ import Head from 'next/head';
 import type { Page } from 'next';
 import { Content, Project, Skill } from '@prisma/client';
 import * as Sentry from '@sentry/nextjs';
+import { User } from 'next-auth';
 
 import { HomeComposition } from 'compositions/home';
 import { trpc } from 'utils/trpc';
@@ -11,18 +12,21 @@ import { ErrorComposition } from 'compositions/error';
 
 export const getStaticProps = async () => {
   let content: Content | null = null;
+  let me: User | null = null;
   let projects: Project[] | null = null;
   let skills: Skill[] | null = null;
   const baseUrl = getBaseUrl();
 
   try {
-    const [contentRes, projectsRes, skillsRes] = await Promise.all([
+    const [contentRes, meRes, projectsRes, skillsRes] = await Promise.all([
       fetch(`${baseUrl}/api/content`),
+      fetch(`${baseUrl}/api/me`),
       fetch(`${baseUrl}/api/project`),
       fetch(`${baseUrl}/api/skills`),
     ]);
 
     content = await contentRes.json();
+    me = await meRes.json();
     projects = await projectsRes.json();
     skills = await skillsRes.json();
   } catch (e) {
@@ -32,6 +36,7 @@ export const getStaticProps = async () => {
   return {
     props: {
       prefetchedContent: content,
+      prefetchedMe: me,
       prefetchedProjects: projects,
       prefetchedSkills: skills,
     },
@@ -43,10 +48,12 @@ type HomeProps = {
   prefetchedContent: Content | null;
   prefetchedProjects: Project[] | null;
   prefetchedSkills: Skill[] | null;
+  prefetchedMe: User[] | null;
 };
 
 const Home: Page<HomeProps> = ({
   prefetchedContent,
+  prefetchedMe,
   prefetchedProjects,
   prefetchedSkills,
 }) => {
@@ -58,8 +65,27 @@ const Home: Page<HomeProps> = ({
     },
   );
 
-  if (!content && contentStatus === 'loading') return <Loader />;
-  if (!content || contentStatus === 'error')
+  const { data: me, status: getMeStatus } = trpc.useQuery(['user.get'], {
+    enabled: !prefetchedMe,
+    initialData: prefetchedMe,
+  });
+
+  if (
+    [
+      !content && contentStatus === 'loading',
+      !me && getMeStatus === 'loading',
+    ].includes(true)
+  )
+    return <Loader />;
+
+  if (
+    [
+      !content,
+      contentStatus === 'error',
+      !me,
+      getMeStatus === 'error',
+    ].includes(true)
+  )
     return (
       <ErrorComposition
         statusCode={500}
@@ -77,6 +103,7 @@ const Home: Page<HomeProps> = ({
 
       <HomeComposition
         content={content}
+        me={me}
         prefetchedProjects={prefetchedProjects}
         prefetchedSkills={prefetchedSkills}
       />

@@ -20,7 +20,8 @@ export type TypographyVariant =
   | 'large-title'
   | 'title'
   | 'subtitle'
-  | 'base';
+  | 'base'
+  | 'body-small';
 
 export type TypographyGradient = 'pink-to-blue' | 'blue-to-green' | 'none';
 

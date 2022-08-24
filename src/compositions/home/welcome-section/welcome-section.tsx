@@ -1,10 +1,15 @@
+import { User } from 'next-auth';
+
 import { Typography, Container, Button } from 'components';
 
 import styles from './welcome-section.module.css';
 
-type WelcomeSectionProps = { subtitle: string };
+type WelcomeSectionProps = { subtitle: string; me: User };
 
-export const WelcomeSection = ({ subtitle }: WelcomeSectionProps) => (
+export const WelcomeSection = ({
+  subtitle,
+  me: { cvUrl },
+}: WelcomeSectionProps) => (
   <section className={styles.welcome}>
     <Container className={styles.container}>
       <Typography as='h1' variant='super-title' className={styles.title}>
@@ -20,7 +25,7 @@ export const WelcomeSection = ({ subtitle }: WelcomeSectionProps) => (
       </div>
 
       <a
-        href='https://drive.google.com/file/d/16ZBBaPMvMUZyiE65NordvMmlwMY849Ua/view?usp=sharing'
+        href={`${cvUrl}`}
         target='_blank'
         rel='noopener noreferrer'
         className={styles['view-cv']}

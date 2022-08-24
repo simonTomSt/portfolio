@@ -1,6 +1,7 @@
 import type { Content, Project, Skill } from '@prisma/client';
+import { User } from 'next-auth';
 
-import { Container, Logo } from '../../components';
+import { Container, Footer } from '../../components';
 
 import { AboutMeSection } from './about-me-section';
 import { ContactSection } from './contact-section';
@@ -12,10 +13,12 @@ type HomeCompositionProps = {
   content: Content;
   prefetchedProjects: Project[] | null;
   prefetchedSkills: Skill[] | null;
+  me: User;
 };
 
 export const HomeComposition = ({
   content,
+  me,
   prefetchedProjects,
   prefetchedSkills,
 }: HomeCompositionProps) => {
@@ -23,13 +26,14 @@ export const HomeComposition = ({
 
   return (
     <main>
-      <WelcomeSection subtitle={welcomeSubtitle} />
+      <WelcomeSection subtitle={welcomeSubtitle} me={me} />
       <AboutMeSection aboutMeInfo={aboutMe} />
       <Container>
         <SkillsSection skills={prefetchedSkills} />
-        <ProjectsSection prefetchedProjects={prefetchedProjects} />
-        {/* <ContactSection contactText={contactText} /> */}
+        <ProjectsSection prefetchedProjects={prefetchedProjects} me={me} />
+        <ContactSection contactText={contactText} me={me} />
       </Container>
+      <Footer me={me} />
     </main>
   );
 };

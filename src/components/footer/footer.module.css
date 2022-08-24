@@ -1,0 +1,24 @@
+.footer {
+  @apply w-full bg-dark-1 h-[100px] mt-[200px];
+}
+
+.footer__container {
+  @apply flex justify-between items-center;
+}
+
+.footer__social {
+  @apply text-2xl hover:text-white cursor-pointer transition-colors duration-300;
+}
+
+.footer__info {
+  @apply self-end text-center w-full;
+  @apply sm:w-auto;
+}
+
+.footer__info a {
+  @apply mx-1.5 hover:text-white;
+}
+
+.footer__sourcecode {
+  @apply cursor-pointer hover:text-white transition-colors duration-300 underline text-right;
+}
