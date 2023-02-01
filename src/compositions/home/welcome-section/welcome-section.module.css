@@ -1,5 +1,5 @@
 .welcome {
-  @apply w-full text-center h-screen flex flex-col items-center justify-center;
+  @apply w-full text-center h-screen flex flex-col items-center justify-center max-h-[1080px];
 }
 
 .title {

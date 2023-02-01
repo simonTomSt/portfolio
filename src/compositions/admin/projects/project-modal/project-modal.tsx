@@ -4,7 +4,14 @@ import { useForm } from 'react-hook-form';
 import * as Label from '@radix-ui/react-label';
 import type { Project } from '@prisma/client';
 
-import { Button, Input, Modal, Textarea, type ModalProps } from 'components';
+import {
+  Button,
+  Input,
+  Modal,
+  Textarea,
+  type ModalProps,
+  Loader,
+} from 'components';
 import { trpc } from 'utils/trpc';
 import type { ProjectType } from 'utils/types/common';
 
@@ -85,13 +92,17 @@ export const ProjectModal = ({ open, onClose, project }: ProjectModalProps) => {
 
         <Label.Root className={styles.label}>
           Project skills
-          <ProjectSkillSelect
-            onChange={(pressedSkillsIds) =>
-              setValue('skills', pressedSkillsIds)
-            }
-            projectSkills={receivedProj?.skills || []}
-            skills={skills || []}
-          />
+          {skillsStatus === 'loading' ? (
+            <Loader />
+          ) : (
+            <ProjectSkillSelect
+              onChange={(pressedSkillsIds) =>
+                setValue('skills', pressedSkillsIds)
+              }
+              projectSkills={receivedProj?.skills || []}
+              skills={skills || []}
+            />
+          )}
         </Label.Root>
 
         <Button type='submit'>Save</Button>

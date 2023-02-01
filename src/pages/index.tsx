@@ -102,8 +102,8 @@ const Home: Page<HomeProps> = ({
       </Head>
 
       <HomeComposition
-        content={content}
-        me={me}
+        content={content!}
+        me={me!}
         prefetchedProjects={prefetchedProjects}
         prefetchedSkills={prefetchedSkills}
       />

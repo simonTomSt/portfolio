@@ -2,6 +2,7 @@ import { type ReactNode, Fragment } from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
 import clsx from 'clsx';
+import { XLg } from 'react-bootstrap-icons';
 
 import { Paper } from 'components/paper';
 
@@ -46,7 +47,12 @@ export const Modal = ({
             leaveTo='opacity-0 scale-95'
           >
             <Dialog.Panel className={clsx(styles.panel, className)}>
-              <Paper>{children}</Paper>
+              <Paper className={styles.paper}>
+                <button onClick={onClose} className={styles.close}>
+                  <XLg />
+                </button>
+                {children}
+              </Paper>
             </Dialog.Panel>
           </Transition.Child>
         </div>

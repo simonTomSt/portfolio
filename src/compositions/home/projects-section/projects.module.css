@@ -1,6 +1,35 @@
 .projects {
-  @apply mt-28 break-all;
+  @apply mt-[200px] break-words text-center;
 }
+
 .projects__title {
-  @apply w-max mx-auto break-words;
+  @apply text-center;
+}
+
+.projects__container {
+  @apply flex pb-10 mt-10;
+}
+
+.project {
+  @apply bg-dark-2 w-[400px] rounded-xl cursor-pointer overflow-hidden opacity-80 transition-all duration-500 mx-5 min-w-[300px];
+}
+
+.project:hover {
+  @apply opacity-100;
+}
+
+.project:hover .project__image {
+  @apply scale-105;
+}
+
+.project__image {
+  @apply mb-10 transition-all duration-500;
+}
+
+.project__title {
+  @apply text-white;
+}
+
+.project__content {
+  @apply p-4;
 }

@@ -1,4 +1,12 @@
 .contact {
-  @apply bg-gradient-pink-to-blue shadow-2xl pt-6 relative h-[400px];
-  @apply md:px-6 md:pb-2 md:rounded-3xl;
+  @apply pt-6 relative mt-[150px] text-white;
+  @apply md:px-6 md:pb-2 md:rounded-3xl md:flex md:justify-between;
+}
+
+.contact__subtitle {
+  @apply mt-2 pb-5;
+}
+
+.textarea {
+  @apply h-[150px] my-4;
 }

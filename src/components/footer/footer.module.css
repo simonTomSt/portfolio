@@ -16,7 +16,7 @@
 }
 
 .footer__info a {
-  @apply mx-1.5 hover:text-white;
+  @apply mx-1 hover:text-white;
 }
 
 .footer__sourcecode {

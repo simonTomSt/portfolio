@@ -2,10 +2,6 @@ button.button {
   @apply rounded-3xl bg-red-200 transition-colors;
 }
 
-button.text {
-  @apply bg-transparent;
-}
-
 button.large {
   @apply px-12 py-4;
 }
@@ -14,7 +10,15 @@ button.medium {
   @apply px-3 py-2;
 }
 
-/*PColors*/
+/*Colors*/
+button.text {
+  @apply bg-transparent;
+}
+
+button.white {
+  @apply bg-white text-gradient-pink-to-blue;
+}
+
 button.primary {
   @apply bg-gradient-pink-to-blue text-white transition-all duration-500 block text-center relative;
   background-size: 200% auto;

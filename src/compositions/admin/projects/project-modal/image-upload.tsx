@@ -40,7 +40,7 @@ export const ImageUpload = ({
           seyUploadWidget(
             window.cloudinary.createUploadWidget(
               {
-                cloudName: 'szymon-st-pie',
+                cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
                 uploadPreset: 'portfolio',
               },
               (error: Error, result: Result) => {
