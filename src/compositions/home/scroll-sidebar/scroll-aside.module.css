@@ -1,0 +1,11 @@
+.sidebar {
+  @apply hidden fixed left-6 top-1/2 -translate-y-1/2 w-1.5 xl:block;
+}
+
+.active > .link {
+  @apply bg-white scale-x-125;
+}
+
+.link {
+  @apply block bg-gray-2 h-6 w-1.5 rounded-xl cursor-pointer hover:bg-gray-400 my-2 transition-all duration-300;
+}

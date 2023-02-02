@@ -1,6 +1,14 @@
 .contact {
-  @apply pt-6 relative mt-[150px] text-white;
+  @apply pt-6 relative mt-[150px];
   @apply md:px-6 md:pb-2 md:rounded-3xl md:flex md:justify-between;
+}
+
+.contact__content {
+  @apply md:max-w-[400px] md:pr-4;
+}
+
+.contact__form {
+  @apply w-full;
 }
 
 .contact__subtitle {

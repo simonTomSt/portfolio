@@ -105,14 +105,20 @@ export const ProjectModal = ({ open, onClose, project }: ProjectModalProps) => {
           )}
         </Label.Root>
 
-        <Button type='submit'>Save</Button>
-      </form>
+        <div className='flex'>
+          <Button type='submit'>Save</Button>
 
-      {project?.id && (
-        <Button onClick={() => deleteProject({ id: project.id })}>
-          Delete
-        </Button>
-      )}
+          {project?.id && (
+            <Button
+              onClick={() => deleteProject({ id: project.id })}
+              type='button'
+              color='text'
+            >
+              Delete
+            </Button>
+          )}
+        </div>
+      </form>
     </Modal>
   );
 };

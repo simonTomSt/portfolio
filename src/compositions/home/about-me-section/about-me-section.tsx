@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { marked } from 'marked';
 
 import aboutMePhotoPath from '@static/assets/about-me.png';
+import { SectionIndex } from 'constants/section-index';
 
 import { Container, Typography } from '../../../components';
 
@@ -13,7 +14,7 @@ type AboutMeSectionProps = {
 
 export const AboutMeSection = ({ aboutMeInfo }: AboutMeSectionProps) => (
   <Container className={styles.container}>
-    <section className={styles['about-me']}>
+    <section id={SectionIndex.AboutMe} className={styles['about-me']}>
       <Typography as='h2' variant='title' className={styles.title}>
         Let me tell you something about me
       </Typography>

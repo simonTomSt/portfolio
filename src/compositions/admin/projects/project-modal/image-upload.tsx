@@ -27,7 +27,7 @@ export const ImageUpload = ({
   initialImage,
 }: ImageUploadProps) => {
   const [imageUrl, setImageUrl] = useState<string | undefined | null>();
-  const [uploadWidget, seyUploadWidget] = useState<{ open: VoidFunction }>();
+  const [uploadWidget, setUploadWidget] = useState<{ open: VoidFunction }>();
   const imageSrc = imageUrl?.toString() || initialImage?.toString();
 
   return (
@@ -37,7 +37,7 @@ export const ImageUpload = ({
         id='cloudinary-upload-widget'
         src='https://upload-widget.cloudinary.com/global/all.js'
         onLoad={() =>
-          seyUploadWidget(
+          setUploadWidget(
             window.cloudinary.createUploadWidget(
               {
                 cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -56,7 +56,7 @@ export const ImageUpload = ({
         }
       />
       {imageSrc && <Image src={imageSrc} width={300} height={400} />}
-      <Button onClick={() => uploadWidget?.open()}>upload</Button>
+      <Button onClick={() => uploadWidget?.open()}>upload image</Button>
     </>
   );
 };

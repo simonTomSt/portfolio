@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import * as Label from '@radix-ui/react-label';
 import { Skill } from '@prisma/client';
@@ -10,7 +10,7 @@ type SkillItemProps = {
   skill: Skill;
 };
 
-export const SkillItem = ({ skill }: SkillItemProps) => {
+export const SkillItem = memo(({ skill }: SkillItemProps) => {
   const [name, setName] = useState(() => skill.name);
   const [primary, setPrimary] = useState(() => !!skill.primary);
   const { mutate: updateSingleSkill } = trpc.useMutation([
@@ -52,9 +52,11 @@ export const SkillItem = ({ skill }: SkillItemProps) => {
           </Button>
         </RowInfoItem>
         <RowInfoItem>
-          <Button onClick={() => deleteSkill({ id: skill.id })}>Delete</Button>
+          <Button color='text' onClick={() => deleteSkill({ id: skill.id })}>
+            Delete
+          </Button>
         </RowInfoItem>
       </div>
     </RowInfo>
   );
-};
+});

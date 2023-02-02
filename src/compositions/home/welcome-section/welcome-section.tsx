@@ -1,5 +1,6 @@
 import { User } from 'next-auth';
 
+import { SectionIndex } from 'constants/section-index';
 import { Typography, Container, Button } from 'components';
 
 import styles from './welcome-section.module.css';
@@ -10,7 +11,7 @@ export const WelcomeSection = ({
   subtitle,
   me: { cvUrl },
 }: WelcomeSectionProps) => (
-  <section className={styles.welcome}>
+  <section id={SectionIndex.Welcome} className={styles.welcome}>
     <Container className={styles.container}>
       <Typography as='h1' variant='super-title' className={styles.title}>
         <span className='text-gradient-pink-to-blue'>Full Stack</span>

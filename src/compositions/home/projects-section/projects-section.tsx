@@ -7,6 +7,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { CardImage } from 'react-bootstrap-icons';
 
 import { trpc } from 'utils/trpc';
+import { SectionIndex } from 'constants/section-index';
 
 import { Typography } from '../../../components';
 import { ProjectType } from '../../../utils/types/common';
@@ -35,7 +36,7 @@ export const ProjectsSection = ({
   if (!projects) return <div />;
 
   return (
-    <section className={styles.projects}>
+    <section id={SectionIndex.Projects} className={styles.projects}>
       <Typography as='h2' variant='title' className={styles.projects__title}>
         I just love creating side projects!
       </Typography>

@@ -1,4 +1,4 @@
-import { Github, Linkedin } from 'react-bootstrap-icons';
+import { Github, Linkedin, EnvelopeFill } from 'react-bootstrap-icons';
 import clsx from 'clsx';
 import { User } from 'next-auth';
 
@@ -11,9 +11,10 @@ type FooterProps = {
   me: User;
 };
 export const Footer = ({ me }: FooterProps) => {
-  const { githubLogin, linkedinUrl } = me as User & {
+  const { githubLogin, linkedinUrl, email } = me as User & {
     githubLogin: string;
     linkedinUrl: string;
+    email: string;
   };
 
   return (
@@ -21,7 +22,7 @@ export const Footer = ({ me }: FooterProps) => {
       <Container className={styles.footer__container}>
         <div className='flex'>
           <a
-            className={clsx(styles.footer__social, 'mr-4')}
+            className={styles.footer__social}
             href={linkedinUrl || '#'}
             rel='noopener noreferrer'
             target='_blank'
@@ -29,12 +30,19 @@ export const Footer = ({ me }: FooterProps) => {
             <Linkedin />
           </a>
           <a
-            className={styles.footer__social}
+            className={clsx(styles.footer__social, 'mx-4')}
             href={`https://github.com/${githubLogin}/`}
             rel='noopener noreferrer'
             target='_blank'
           >
             <Github />
+          </a>
+          <a
+            className={styles.footer__social}
+            href={`mailto:${email}`}
+            rel='noopener noreferrer'
+          >
+            <EnvelopeFill />
           </a>
         </div>
 

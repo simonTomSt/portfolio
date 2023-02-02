@@ -2,6 +2,7 @@ import type { Skill } from '@prisma/client';
 import Image from 'next/image';
 
 import skillsTitleIconPath from '@static/assets/skills-title.svg';
+import { SectionIndex } from 'constants/section-index';
 
 import { Typography } from '../../../components';
 import { trpc } from '../../../utils/trpc';
@@ -26,7 +27,7 @@ export const SkillsSection = ({
   if (!skills) return null;
 
   return (
-    <section className={styles.skills}>
+    <section id={SectionIndex.TechStack} className={styles.skills}>
       <div className={styles['skills__title-container']}>
         <Typography
           as='h2'
