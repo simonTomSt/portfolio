@@ -70,27 +70,26 @@ const Home: Page<HomeProps> = ({
     initialData: prefetchedMe,
   });
 
-  if (
-    [
-      !content && contentStatus === 'loading',
-      !me && getMeStatus === 'loading',
-    ].includes(true)
-  )
-    return <Loader />;
-
-  if (
-    [
-      !content,
-      contentStatus === 'error',
-      !me,
-      getMeStatus === 'error',
-    ].includes(true)
-  )
+  if ([contentStatus, getMeStatus].includes('error'))
     return (
       <ErrorComposition
         statusCode={500}
         message='Sorry could not load the page :('
       />
+    );
+
+  if (
+    [
+      !content,
+      !me,
+      contentStatus === 'loading',
+      getMeStatus === 'loading',
+    ].includes(true)
+  )
+    return (
+      <div className='w-full h-screen relative'>
+        <Loader className='inset-center' />
+      </div>
     );
 
   return (

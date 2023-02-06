@@ -7,7 +7,7 @@ import styles from './scroll-aside.module.css';
 const defaultSetup = {
   spy: true,
   smooth: true,
-  offset: -50,
+  offset: -200,
   duration: 500,
 };
 

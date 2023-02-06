@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Github, BoxArrowUpRight } from 'react-bootstrap-icons';
 
 import { Modal, type ModalProps, Typography } from 'components';
 
@@ -17,38 +18,70 @@ export const ProjectInfoModal = ({
 }: ProjectInfoModalProps) => {
   if (!project) return null;
 
-  const { title, image, description, shortDescription, url, githubUrl } =
-    project;
+  const {
+    title,
+    image,
+    description,
+    shortDescription,
+    url,
+    githubUrl,
+    skills,
+  } = project;
 
   return (
     <Modal onClose={onClose} open={open}>
       {image && (
         <Image
           src={image}
-          height={800}
-          width={1000}
+          height={450}
+          width={800}
           alt={title}
           className={styles.project__image}
         />
       )}
-      <Typography as='h2' variant='title'>
-        {title}
-      </Typography>
-      <Typography as='h3' variant='subtitle'>
-        {shortDescription}
-      </Typography>
-      <Typography>{description}</Typography>
+      <div className='text-left'>
+        <Typography as='h2' variant='title'>
+          {title}
+        </Typography>
 
-      {url && (
-        <a href={url} rel='noreferrer noopener' target='_blank'>
-          View on live
-        </a>
-      )}
-      {githubUrl && (
-        <a href={githubUrl} rel='noreferrer noopener' target='_blank'>
-          View source code
-        </a>
-      )}
+        <Typography as='h3' variant='subtitle' className='my-2'>
+          {shortDescription}
+        </Typography>
+
+        <div className='flex mb-6'>
+          {url && (
+            <a
+              href={url}
+              rel='noreferrer noopener'
+              target='_blank'
+              className={styles['link-button']}
+            >
+              <BoxArrowUpRight />
+              <span>View on live</span>
+            </a>
+          )}
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              rel='noreferrer noopener'
+              target='_blank'
+              className={styles['link-button']}
+            >
+              <Github />
+              <span>View source code</span>
+            </a>
+          )}
+        </div>
+
+        <Typography>{description}</Typography>
+
+        <Typography className='my-4'>
+          <span>Tech stack:</span>
+          <span className='text-white ml-1.5'>
+            {skills?.map((skill) => skill.name).join(', ')}
+          </span>
+        </Typography>
+      </div>
     </Modal>
   );
 };

@@ -11,7 +11,7 @@
 }
 
 .project {
-  @apply bg-dark-2 w-[400px] rounded-xl cursor-pointer overflow-hidden opacity-80 transition-all duration-500 mx-5 min-w-[300px];
+  @apply bg-dark-2 w-[650px] rounded-xl cursor-pointer overflow-hidden opacity-80 transition-all duration-500 min-w-[325px] mx-2 md:mx-5 md:min-w-[425px];
 }
 
 .project:hover {
@@ -32,4 +32,16 @@
 
 .project__content {
   @apply p-4;
+}
+
+.project__all {
+  @apply hover:text-white cursor-pointer transition-colors duration-300;
+}
+
+.link-button {
+  @apply flex items-center mr-6 cursor-pointer hover:text-white transition-colors duration-300;
+}
+
+.link-button > span {
+  @apply ml-2;
 }

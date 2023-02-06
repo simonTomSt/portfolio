@@ -55,7 +55,7 @@ export const ImageUpload = ({
           )
         }
       />
-      {imageSrc && <Image src={imageSrc} width={300} height={400} />}
+      {imageSrc && <Image src={imageSrc} width={800} height={450} />}
       <Button onClick={() => uploadWidget?.open()}>upload image</Button>
     </>
   );
