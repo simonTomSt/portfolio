@@ -62,7 +62,7 @@ model VerificationToken {
 
 model Project {
     id                 String    @id @default(cuid())
-    description        String
+    description        String    @db.Text
     shortDescription   String?
     title              String
     githubUrl          String
@@ -75,7 +75,7 @@ model Project {
 model Content {
     id      String    @id @default(cuid())
     welcome String
-    aboutMe String
+    aboutMe String    @db.Text
     contact String
 }
 
