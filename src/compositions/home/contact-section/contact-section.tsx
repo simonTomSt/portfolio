@@ -1,13 +1,18 @@
-import { User } from 'next-auth';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { useForm } from 'react-hook-form';
 
+import { TypeHomePageFields } from 'utils/cms/models';
 import { SectionIndex } from 'constants/section-index';
 import { Button, Input, Textarea, Typography } from 'components';
 
 import { useEmailSend } from './useEmailSend';
 import styles from './contact.module.css';
 
-type ContactSectionProps = { contactText: string; me: User };
+type ContactSectionProps = {
+  contactTitle: TypeHomePageFields['contactTitle'];
+  contactDescription: TypeHomePageFields['contactDescription'];
+};
 
 type ContactFormType = {
   email: string;
@@ -15,8 +20,8 @@ type ContactFormType = {
 };
 
 export const ContactSection = ({
-  contactText,
-  me: { email },
+  contactTitle,
+  contactDescription,
 }: ContactSectionProps) => {
   const { send: sendEmail, status: emailStatus } = useEmailSend();
   const {
@@ -32,15 +37,22 @@ export const ContactSection = ({
     <section id={SectionIndex.Contact} className={styles.contact}>
       <div className={styles.contact__content}>
         <Typography as='h2' variant='title' className={styles.contact__title}>
-          Get In Touch!
+          {contactTitle}
         </Typography>
-        <Typography
-          as='h3'
-          variant='subtitle'
-          className={styles.contact__subtitle}
-        >
-          {contactText}
-        </Typography>
+        <div className={styles.contact__subtitle}>
+          <span>
+            {documentToReactComponents(contactDescription, {
+              renderNode: {
+                // eslint-disable-next-line react/no-unstable-nested-components
+                [BLOCKS.PARAGRAPH]: (_node, children) => (
+                  <Typography as='h3' variant='subtitle'>
+                    {children}
+                  </Typography>
+                ),
+              },
+            })}
+          </span>
+        </div>
       </div>
 
       <div className={styles.contact__form}>
@@ -77,7 +89,7 @@ export const ContactSection = ({
           {emailStatus === 'error' && !isFormError && (
             <Typography className='mt-2'>
               Oops! There is an issue, please try to email me directly using my
-              email: {email}
+              email: {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
             </Typography>
           )}
         </form>

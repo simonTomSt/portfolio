@@ -8,7 +8,7 @@ const removeImports = require('next-remove-imports')();
 
 const moduleExports = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['images.ctfassets.net'],
   },
 };
 

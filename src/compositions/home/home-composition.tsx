@@ -1,5 +1,4 @@
-import type { Content, Project, Skill } from '@prisma/client';
-import { User } from 'next-auth';
+import { TypeHomePageFields } from 'utils/cms/models';
 
 import { Container, Footer } from '../../components';
 
@@ -11,33 +10,41 @@ import { SkillsSection } from './skills-section';
 import { WelcomeSection } from './welcome-section';
 
 type HomeCompositionProps = {
-  content: Content;
-  prefetchedProjects: Project[] | null;
-  prefetchedSkills: Skill[] | null;
-  me: User;
+  homePageData: TypeHomePageFields;
 };
 
-export const HomeComposition = ({
-  content,
-  me,
-  prefetchedProjects,
-  prefetchedSkills,
-}: HomeCompositionProps) => {
-  const { welcome: welcomeSubtitle, aboutMe, contact: contactText } = content;
+export const HomeComposition = ({ homePageData }: HomeCompositionProps) => {
+  const {
+    subtitle,
+    resume,
+    aboutMeTitle,
+    aboutMeDescription,
+    skills,
+    contactTitle,
+    contactDescription,
+    projectsTitle,
+    projects,
+  } = homePageData;
 
   return (
     <>
       <ScrollAside />
       <main>
-        <WelcomeSection subtitle={welcomeSubtitle} me={me} />
-        <AboutMeSection aboutMeInfo={aboutMe} />
+        <WelcomeSection subtitle={subtitle} resume={resume} />
+        <AboutMeSection
+          aboutMeTitle={aboutMeTitle}
+          aboutMeDescription={aboutMeDescription}
+        />
         <Container>
-          <SkillsSection skills={prefetchedSkills} />
-          <ProjectsSection prefetchedProjects={prefetchedProjects} me={me} />
-          <ContactSection contactText={contactText} me={me} />
+          <SkillsSection skills={skills} />
+          <ProjectsSection projectsTitle={projectsTitle} projects={projects} />
+          <ContactSection
+            contactTitle={contactTitle}
+            contactDescription={contactDescription}
+          />
         </Container>
       </main>
-      <Footer me={me} />
+      <Footer />
     </>
   );
 };

@@ -7,11 +7,11 @@
 }
 
 .subtitle-container {
-  @apply mx-auto max-w-md;
+  @apply mx-auto max-w-md mt-8;
 }
 
 .subtitle {
-  @apply mt-8 text-center;
+  @apply text-center;
 }
 
 .view-cv {

@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import { Github, BoxArrowUpRight } from 'react-bootstrap-icons';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 
 import { Modal, type ModalProps, Typography } from 'components';
-
-import { ProjectType } from '../../../utils/types/common';
+import { TypeProject } from 'utils/cms/models';
 
 import styles from './projects.module.css';
 
 type ProjectInfoModalProps = Omit<ModalProps, 'children'> & {
-  project: ProjectType | null;
+  project: TypeProject['fields'] | null;
 };
 
 export const ProjectInfoModal = ({
@@ -23,8 +24,8 @@ export const ProjectInfoModal = ({
     image,
     description,
     shortDescription,
-    url,
-    githubUrl,
+    productionUrl,
+    repoUrl,
     skills,
   } = project;
 
@@ -32,7 +33,7 @@ export const ProjectInfoModal = ({
     <Modal onClose={onClose} open={open}>
       {image && (
         <Image
-          src={image}
+          src={`https:${image.fields.file.url}`}
           height={450}
           width={800}
           alt={title}
@@ -44,14 +45,23 @@ export const ProjectInfoModal = ({
           {title}
         </Typography>
 
-        <Typography as='h3' variant='subtitle' className='my-2'>
-          {shortDescription}
-        </Typography>
+        <div className='my-2'>
+          {documentToReactComponents(shortDescription, {
+            renderNode: {
+              // eslint-disable-next-line react/no-unstable-nested-components
+              [BLOCKS.PARAGRAPH]: (_node, children) => (
+                <Typography as='h3' variant='subtitle'>
+                  {children}
+                </Typography>
+              ),
+            },
+          })}
+        </div>
 
         <div className='flex mb-6'>
-          {url && (
+          {productionUrl && (
             <a
-              href={url}
+              href={productionUrl}
               rel='noreferrer noopener'
               target='_blank'
               className={styles['link-button']}
@@ -60,9 +70,9 @@ export const ProjectInfoModal = ({
               <span>View on live</span>
             </a>
           )}
-          {githubUrl && (
+          {repoUrl && (
             <a
-              href={githubUrl}
+              href={repoUrl}
               rel='noreferrer noopener'
               target='_blank'
               className={styles['link-button']}
@@ -73,12 +83,21 @@ export const ProjectInfoModal = ({
           )}
         </div>
 
-        <Typography>{description}</Typography>
+        <div>
+          {documentToReactComponents(description, {
+            renderNode: {
+              // eslint-disable-next-line react/no-unstable-nested-components
+              [BLOCKS.PARAGRAPH]: (_node, children) => (
+                <Typography>{children}</Typography>
+              ),
+            },
+          })}
+        </div>
 
         <Typography className='my-4'>
           <span>Tech stack:</span>
           <span className='text-white ml-1.5'>
-            {skills?.map((skill) => skill.name).join(', ')}
+            {skills?.map(({ fields }) => fields.name).join(', ')}
           </span>
         </Typography>
       </div>

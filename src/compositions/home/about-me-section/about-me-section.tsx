@@ -1,32 +1,33 @@
 import Image from 'next/image';
-import { marked } from 'marked';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import aboutMePhotoPath from '@static/assets/about-me.png';
 import { SectionIndex } from 'constants/section-index';
+import { TypeHomePageFields } from 'utils/cms/models';
 
 import { Container, Typography } from '../../../components';
 
 import styles from './about-me-section.module.css';
 
 type AboutMeSectionProps = {
-  aboutMeInfo: string;
+  aboutMeTitle: TypeHomePageFields['aboutMeTitle'];
+  aboutMeDescription: TypeHomePageFields['aboutMeDescription'];
 };
 
-export const AboutMeSection = ({ aboutMeInfo }: AboutMeSectionProps) => (
+export const AboutMeSection = ({
+  aboutMeTitle,
+  aboutMeDescription,
+}: AboutMeSectionProps) => (
   <Container className={styles.container}>
     <section id={SectionIndex.AboutMe} className={styles['about-me']}>
       <Typography as='h2' variant='title' className={styles.title}>
-        Let me tell you something about me
+        {aboutMeTitle}
       </Typography>
 
       <div className={styles['about-me__body']}>
-        <div
-          className='styles.mardown'
-          /* eslint-disable-next-line react/no-danger */
-          dangerouslySetInnerHTML={{
-            __html: marked.parse(aboutMeInfo || ''),
-          }}
-        />
+        <div className='styles.mardown'>
+          {documentToReactComponents(aboutMeDescription)}
+        </div>
       </div>
       <div className={styles.image}>
         <Image src={aboutMePhotoPath} alt='Simon portrait' />

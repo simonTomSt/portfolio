@@ -1,76 +1,31 @@
 import Head from 'next/head';
 import type { Page } from 'next';
-import { Content, Project, Skill } from '@prisma/client';
-import * as Sentry from '@sentry/nextjs';
-import { User } from 'next-auth';
 
 import { HomeComposition } from 'compositions/home';
-import { trpc } from 'utils/trpc';
-import { Loader } from 'components';
-import { getBaseUrl } from 'utils/functions/getBaseUrl';
+import { getHomePageContent } from 'utils/cms';
 import { ErrorComposition } from 'compositions/error';
+import { logger } from 'utils/logger';
+import { TypeHomePageFields } from 'utils/cms/models';
 
 export const getStaticProps = async () => {
-  let content: Content | null = null;
-  let me: User | null = null;
-  let projects: Project[] | null = null;
-  let skills: Skill[] | null = null;
-  const baseUrl = getBaseUrl();
-
   try {
-    const [contentRes, meRes, projectsRes, skillsRes] = await Promise.all([
-      fetch(`${baseUrl}/api/content`),
-      fetch(`${baseUrl}/api/me`),
-      fetch(`${baseUrl}/api/project`),
-      fetch(`${baseUrl}/api/skills`),
-    ]);
+    const homePageData = await getHomePageContent();
 
-    content = await contentRes.json();
-    me = await meRes.json();
-    projects = await projectsRes.json();
-    skills = await skillsRes.json();
-  } catch (e) {
-    Sentry.captureException(e);
+    return { props: { homePageData }, revalidate: 14400 }; // 4h
+  } catch (err) {
+    logger.log(err);
+
+    return { props: { error: true } };
   }
-
-  return {
-    props: {
-      prefetchedContent: content,
-      prefetchedMe: me,
-      prefetchedProjects: projects,
-      prefetchedSkills: skills,
-    },
-    revalidate: 10,
-  };
 };
 
 type HomeProps = {
-  prefetchedContent: Content | null;
-  prefetchedProjects: Project[] | null;
-  prefetchedSkills: Skill[] | null;
-  prefetchedMe: User[] | null;
+  homePageData: TypeHomePageFields;
+  error?: boolean;
 };
 
-const Home: Page<HomeProps> = ({
-  prefetchedContent,
-  prefetchedMe,
-  prefetchedProjects,
-  prefetchedSkills,
-}) => {
-  const { data: content, status: contentStatus } = trpc.useQuery(
-    ['content.getContent'],
-    {
-      enabled: !prefetchedContent,
-      initialData: prefetchedContent,
-    },
-  );
-
-  const { data: me, status: getMeStatus } = trpc.useQuery(['user.get'], {
-    enabled: !prefetchedMe,
-    initialData: prefetchedMe,
-  });
-
-  if ([contentStatus, getMeStatus].includes('error'))
+const Home: Page<HomeProps> = ({ homePageData, error }) => {
+  if (error)
     return (
       <ErrorComposition
         statusCode={500}
@@ -78,34 +33,23 @@ const Home: Page<HomeProps> = ({
       />
     );
 
-  if (
-    [
-      !content,
-      !me,
-      contentStatus === 'loading',
-      getMeStatus === 'loading',
-    ].includes(true)
-  )
+  if (!homePageData) {
     return (
-      <div className='w-full h-screen relative'>
-        <Loader className='inset-center' />
+      <div>
+        <p style={{ color: 'white' }}>no data</p>
       </div>
     );
+  }
 
   return (
     <>
       <Head>
-        <title>Simon Stepien Full Stack Developer</title>
-        <meta name='description' content='Simon Stepien Full Stack Developer' />
+        <title>{homePageData.title}</title>
+        <meta name='description' content={homePageData.title} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <HomeComposition
-        content={content!}
-        me={me!}
-        prefetchedProjects={prefetchedProjects}
-        prefetchedSkills={prefetchedSkills}
-      />
+      <HomeComposition homePageData={homePageData} />
     </>
   );
 };
